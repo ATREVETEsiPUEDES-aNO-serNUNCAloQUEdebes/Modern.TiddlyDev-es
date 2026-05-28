@@ -5,3 +5,4 @@ title: $:/plugins/your-name/plugin-name/readme
 <<lingo Readme>>
 
 了；「看归还借款
+Auto-refresh test marker: ${Date.now()}
