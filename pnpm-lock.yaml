@@ -15,8 +15,8 @@ importers:
         specifier: ^5.3.8
         version: 5.3.8
       tiddlywiki-plugin-dev:
-        specifier: ^0.5.9
-        version: 0.5.9(@types/node@25.6.0)(postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.9)(yaml@2.8.3))(postcss@8.5.9)(svelte@5.1.0)(tiddlywiki@5.3.8)(typescript@6.0.2)
+        specifier: ^0.5.10
+        version: 0.5.10(@types/node@25.6.0)(postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.9)(yaml@2.8.3))(postcss@8.5.9)(svelte@5.1.0)(tiddlywiki@5.3.8)(typescript@6.0.2)
     devDependencies:
       '@modern-js/tsconfig':
         specifier: ^3.1.3
@@ -3074,8 +3074,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  tiddlywiki-plugin-dev@0.5.9:
-    resolution: {integrity: sha512-N5rYhgW7u1BeK49QTfEz/1xyQtk3zh1835UdG0IUsS3WUOZHPpyGofGxlusyIo8manv+7q5WMbdPAxLuTsVNmw==}
+  tiddlywiki-plugin-dev@0.5.10:
+    resolution: {integrity: sha512-7Eb31AfUJWn99KEJYgNhiNkEra3hrmP7PMVfgGv1jAd7+khcH+Qvka+2zzcX15XjLa5+Cb//AphGJ98LeFfj4Q==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     peerDependencies:
@@ -6405,7 +6405,7 @@ snapshots:
       commander: 2.20.3
       source-map-support: 0.5.21
 
-  tiddlywiki-plugin-dev@0.5.9(@types/node@25.6.0)(postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.9)(yaml@2.8.3))(postcss@8.5.9)(svelte@5.1.0)(tiddlywiki@5.3.8)(typescript@6.0.2):
+  tiddlywiki-plugin-dev@0.5.10(@types/node@25.6.0)(postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.9)(yaml@2.8.3))(postcss@8.5.9)(svelte@5.1.0)(tiddlywiki@5.3.8)(typescript@6.0.2):
     dependencies:
       '@tailwindcss/postcss': 4.2.2
       autoprefixer: 10.4.27(postcss@8.5.9)
