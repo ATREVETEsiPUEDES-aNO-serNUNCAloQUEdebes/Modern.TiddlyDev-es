@@ -1,119 +1,119 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/007-commands
-caption: 常用命令
+caption: Comandos comunes
 authors: Sttot(Gk0Wk)
 type: text/vnd.tiddlywiki
 
-项目封装了一些常用命令，这些命令大多是使用了另一个工具 [[tiddlywiki-plugin-dev|https://www.npmjs.com/package/tiddlywiki-plugin-dev]] 实现的。
+El proyecto encapsula algunos comandos comunes, la mayoria de los cuales utilizan otra herramienta. [[tiddlywiki-plugin-dev|https://www.npmjs.com/package/tiddlywiki-plugin-dev]] Realizado。
 
-! 内置命令
+! Comandos integrados
 
-!! 清除构建产物
+!! Limpiar artefactos de construccion
 
 ```bash
 pnpm run clean
 ```
 
-会删除 dist 文件夹。
+Sera eliminado dist Carpeta。
 
-!! 升级依赖
+!! Actualizar dependencias
 
 ```bash
 pnpm run update && pnpm install
 ```
 
-会自动升级 tw5-typed、tiddlywiki-plugin-dev 等包，建议每隔一段时间就执行一次。
+Se actualizara automaticamente tw5-typed、tiddlywiki-plugin-dev Espere el paquete. Se recomienda ejecutarlo de vez en cuando.。
 
-!! 创建一个插件
+!! Crea un complemento
 
 ```bash
 pnpm run new
 ```
 
-!! 进入实时开发模式
+!! Ingrese al modo de desarrollo en tiempo real
 
 ```bash
 pnpm run dev
 ```
 
-经过短暂编译后，会打开一个网页服务器，浏览器打开之可以看到效果。页面会随着插件内容的修改自动重新编译、刷新。
+Despues de una breve compilacion, se abrira un servidor web y podra ver el efecto abriendolo en el navegador. La pagina se volvera a compilar y actualizar automaticamente a medida que se modifique el contenido del complemento.。
 
-这个页面是只读的，对它的修改不会写回到 wiki 文件夹，可以随意调试。
+Esta pagina es de solo lectura y las modificaciones realizadas en ella no se reescribiran. wiki Carpeta, puedes depurarla a voluntad.。
 
-!! 进入文档编写模式
+!! Ingrese al modo de escritura de documentos
 
 ```bash
 pnpm run dev:wiki
 ```
 
-启动的页面是可编辑的页面，可以直接编辑 wiki 文件夹中的内容。
+La pagina iniciada es una pagina editable y se puede editar directamente. wiki Contenido de la carpeta。
 
-!! 运行自动化测试
+!! Ejecute pruebas automatizadas
 
 ```bash
 pnpm run test
 ```
 
-!! 运行 Playwright E2E 测试
+!! correr Playwright E2E Pruebas
 
 ```bash
 pnpm run test:playwright
 ```
 
-无头模式（不显示浏览器窗口），适合 CI 和快速回归。
+Modo sin cabeza (no se muestra ninguna ventana del navegador), adecuado para CI Y regreso rapido。
 
 ```bash
 pnpm run test:playwright:headed
 ```
 
-有头模式（显示浏览器窗口）。如果测试很短，浏览器可能会很快打开又关闭。
+Modo encabezado (mostrar ventana del navegador). Si la prueba es corta, el navegador puede abrirse y cerrarse rapidamente。
 
 ```bash
 pnpm run test:playwright:debug
 ```
 
-调试模式会打开 Playwright Inspector 并暂停执行，适合在看不清有头窗口时排查问题。
+Se activara el modo de depuracion. Playwright Inspector Y suspender la ejecucion, adecuado para solucionar problemas cuando la ventana del encabezado no se puede ver claramente.。
 
-详见[[012-关于调试|$:/plugins/Modern.TiddlyDev/doc/tutorials/zh/012-关于调试]]。
+Ver detalles[[012-Acerca de la depuracion|$:/plugins/Modern.TiddlyDev/doc/tutorials/zh/012-Acerca de la depuracion]]。
 
-!! 构建插件
+!! Creacion de complementos
 
-有两种形式：
+Hay dos formas：
 
-# 直接构建若干独立的插件，JSON 格式：
+# Cree directamente varios complementos independientes，JSON Formato：
 
 ```bash
 pnpm run build
 ```
 
-# 以插件库形式构建：
+# Construya como una biblioteca de complementos：
 
 ```bash
 pnpm run build:library
 ```
 
-构建结果在 dist 中。
+El resultado de la construccion esta en dist Medio。
 
-!! 发布
+!! Liberacion
 
-构建插件库+对 wiki 文档构建发布为网页。
+Crear biblioteca de complementos+si wiki Construccion y publicacion de documentos como paginas web.。
 
-在线形式，核心文件和媒体文件都是外置的，可以加快网页打开速度，但是网页只能在线使用，下载之后由于缺失核心和媒体文件无法使用：
+En el formato en linea, los archivos principales y los archivos multimedia son externos, lo que puede acelerar la apertura de la pagina web, pero las paginas web solo se pueden utilizar en linea. Despues de la descarga, no se pueden utilizar debido a que faltan archivos principales y multimedia.：
 
 ```bash
 pnpm run publish
 ```
 
-离线形式，即打包为单文件 wiki，可以下载使用：
+Formulario sin conexion, es decir, empaquetado en un solo archivo. wiki，Se puede descargar y utilizar.：
 
 ```bash
 pnpm run publish:offline
 ```
 
-构建结果在 dist 中。
+El resultado de la construccion esta en dist Medio。
 
-! 自定义指令
+! Instrucciones personalizadas
 
-实际上，上述指令都是对 tiddlywiki-plugin-dev 的进一步封装。tiddlywiki-plugin-dev 可以支持其他自定义参数来定制你的构建方式。可以使用如下命令查看当前版本的 tiddlywiki-plugin-dev 的使用方法：
+De hecho, las instrucciones anteriores son todas correctas. tiddlywiki-plugin-dev Mayor encapsulacion de。tiddlywiki-plugin-dev Puede admitir otros parametros personalizados para personalizar su metodo de construccion. Puede utilizar el siguiente comando para ver la version actual. tiddlywiki-plugin-dev Como utilizar：
 
 ```bash
 npx tiddlywiki-plugin-dev help

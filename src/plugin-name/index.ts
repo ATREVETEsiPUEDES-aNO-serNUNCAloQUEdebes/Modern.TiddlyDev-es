@@ -35,10 +35,10 @@ class ExampleWidget extends Widget {
 }
 
 // zh tips
-// 此处导出的模块变量名RandomNumber将作为微件（widget）的名称。使用<$RandomNumber/>调用此微件。
-// Widget在tiddlywiki中的条目名、源文件以及源文件.meta文件名和Widget名字可以不一致。
-// 比如Widget条目名可以为My-Widget,源文件以及源文件.meta文件名可以称为index.ts与index.ts.meta。最终的Widget名却是：RandomNumber，且使用<$RandomNumber/>调用此微件。
-// 如果为一个脚本文件添加了 .meta 将会被视为入口文件。
+// El nombre de la variable del modulo exportado aqui.RandomNumberSe utilizara como widget.（widget）Nombre. uso<$RandomNumber/>Llame a este widget。
+// WidgetentiddlywikiEl nombre de la entrada, el archivo fuente y el archivo fuente en.metaNombre del archivo yWidgetLos nombres pueden ser inconsistentes。
+// Por ejemploWidgetEl nombre de la entrada puede serMy-Widget,Archivos fuente y archivos fuente.metaSe puede llamar al nombre del archivo.index.tsConindex.ts.meta。FinalWidgetEl nombre es：RandomNumber，Y uso<$RandomNumber/>Llame a este widget。
+// Si se agrega a un archivo de script .meta Se considerara expediente de entrada.。
 // en tips
 // The module variable name RandomNumber exported here will be used as the name of the widget. Use <$RandomNumber/> to call this Widget.
 // The Widget's tiddler name, source file, and source file .meta file name in tiddlywiki can be inconsistent with the Widget name.

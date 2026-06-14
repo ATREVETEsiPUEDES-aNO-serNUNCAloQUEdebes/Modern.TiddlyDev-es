@@ -1,60 +1,60 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/012-about-debugging
-caption: 关于调试
+caption: Acerca de la depuracion
 authors: whitefall
 type: text/vnd.tiddlywiki
 
-!! Q：如何友好的调试呢？我一般比较喜欢用求值的思维玩，根据求得的结果，看看他是什么，在进行下一步，然后一步步实现它。
+!! Q：¿Como depurar de forma amigable? Generalmente prefiero jugar con el pensamiento de la evaluacion. Segun el resultado obtenido, vea cual es, de el siguiente paso y luego implementelo paso a paso.。
 
 
-A：多用控制台：
-* 使用浏览器的开发者工具，按 F12 键或者在浏览器菜单中选择“更多工具”>“开发者工具”
-* 开发者工具会有一个 控制台 标签，打开会有一个聊天框一样的界面。最下方输入js代码可以执行。你输入$tw看看，该有的都有了
-* 但需要注意的是，你平时写widget的那个环境是沙盒并非浏览器环境（你可以理解成有些全局变量你拿不到，或者有些变量只有里面才能拿到），这个要注意。
+A：Consola multiusos：
+* Usando las herramientas de desarrollo de su navegador, presione F12 Presione o seleccione "Mas herramientas" en el menu del navegador.”>“Herramientas para desarrolladores”
+* Las herramientas de desarrollador tendran una pestana de consola y, cuando se abran, habra una interfaz como un cuadro de chat. Entra en la parte inferiorjsEl codigo se puede ejecutar. entras$twMira, todo esta ahi
+* Pero cabe senalar que cuando sueles escribirwidgetEl entorno es un entorno sandbox, no un entorno de navegador (puede comprender que hay algunas variables globales que no puede obtener, o algunas variables solo se pueden obtener internamente), debe prestar atencion a esto.。
 
 
-A：使用debugger调试语句。
+A：usodebuggerDeclaraciones de depuracion。
 
-!! Q：如何写测试呢？
+!! Q：Como escribir pruebas？
 
-你可以在 `wiki/tiddlers/tests` 文件夹里写测试，也可以在插件里写，只要 meta 文件里包含这些即可：
+Tu puedes `wiki/tiddlers/tests` Escriba la prueba en la carpeta, o puede escribirla en el complemento, siempre que meta Simplemente incluyelo en el archivo.：
 
 ```tid
 type: application/javascript
 tags: $:/tags/test-spec
 ```
 
-`$:/tags/test-spec` 标签会将这个条目标记为测试，并在你执行 `pnpm run test` 的时候被执行。
+`$:/tags/test-spec` La etiqueta marcara esta entrada como una prueba y se ejecutara cuando usted `pnpm run test` se ejecuta cuando。
 
-注意在 `wiki/tiddlers/tests` 文件夹里写测试只能用 JS；在插件里写测试可以用 TS 但是测试会被打包进插件，增大插件体积。
+Presta atencion a `wiki/tiddlers/tests` Escribir pruebas en una carpeta solo se puede utilizar JS；Se puede utilizar al escribir pruebas en el complemento. TS Sin embargo, la prueba se empaquetara en el complemento, lo que aumentara el tamano del complemento.。
 
-!! Q：如何写 Playwright 端到端测试？
+!! Q：Como escribir Playwright Pruebas de un extremo a otro？
 
-可以把 Playwright 测试文件放在 `wiki/tiddlers/tests/playwright` 目录中。示例：
+puedo poner Playwright Los archivos de prueba se colocan en `wiki/tiddlers/tests/playwright` En el directorio. Ejemplo：
 
-* `example-widget.spec.ts`：验证 Widget 初始渲染
-* `example-widget-click.spec.ts`：验证点击交互行为
+* `example-widget.spec.ts`：Verificacion Widget Representacion inicial
+* `example-widget-click.spec.ts`：Verifique el comportamiento de interaccion de clic
 
-另外配一个用于被访问的测试条目，例如 `PlaywrightExampleWidget.tid`，然后在测试里通过 `/#PlaywrightExampleWidget` 打开页面。
+Configure tambien una entrada de prueba para acceder, por ejemplo `PlaywrightExampleWidget.tid`，Entonces pasa la prueba `/#PlaywrightExampleWidget` Abre la pagina.。
 
-常用命令：
+Comandos de uso comun：
 
 ```bash
 pnpm test:playwright
 pnpm test:playwright:headed
 ```
 
-两者区别：
+La diferencia entre los dos：
 
-* `pnpm test:playwright` 是无头模式（不弹浏览器窗口），更适合 CI 或快速回归
-* `pnpm test:playwright:headed` 是有头模式（可见浏览器窗口），更适合本地排查交互问题
+* `pnpm test:playwright` Es un modo sin cabeza (sin ventanas emergentes en la ventana del navegador), que es mas adecuado para CI O un regreso rapido
+* `pnpm test:playwright:headed` Es un modo frontal (ventana visible del navegador), que es mas adecuado para la resolucion local de problemas de interaccion.
 
-!! 常见问题
+!! Preguntas frecuentes
 
-!!! 启动时报错 `ReferenceError: Element is not defined`
+!!! Error al iniciar `ReferenceError: Element is not defined`
 
-这是因为你使用的某个库只支持浏览器端渲染，你需要确保使用它的逻辑只在浏览器端运行。
+Esto se debe a que una determinada biblioteca que esta utilizando solo admite la representacion en el lado del navegador y debe asegurarse de que la logica que la utiliza solo se ejecute en el lado del navegador.。
 
-可以参考白板插件的做法：
+Puede consultar el metodo del complemento de pizarra：
 
-# 将微件的类型改成 `module-type: library` [[源码|https://github.com/tiddly-gittly/tiddlywiki-whiteboard/blob/master/src/tw-whiteboard/widget.ts.meta]]
-# 写一个加载器，类型是微件 `module-type: widget`，在判断是浏览器环境时再加载插件 [[源码|https://github.com/tiddly-gittly/tiddlywiki-whiteboard/blob/master/src/tw-whiteboard/widget-loader.js]]
+# Cambie el tipo de widget a `module-type: library` [[Codigo fuente|https://github.com/tiddly-gittly/tiddlywiki-whiteboard/blob/master/src/tw-whiteboard/widget.ts.meta]]
+# Escribe un cargador cuyo tipo sea widget. `module-type: widget`，Cargue el complemento cuando determine que es un entorno de navegador. [[Codigo fuente|https://github.com/tiddly-gittly/tiddlywiki-whiteboard/blob/master/src/tw-whiteboard/widget-loader.js]]

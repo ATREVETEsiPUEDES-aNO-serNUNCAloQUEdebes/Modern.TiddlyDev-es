@@ -1,34 +1,34 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/006-publish
-caption: 发布插件
+caption: Publicar complementos
 authors: Sttot(Gk0Wk)
 type: text/vnd.tiddlywiki
 
-插件是面向用户的，因此你一定需要为你的插件编写使用说明、案例之类的，或者同时为你的用户生成一个可以直接使用的空 wiki 模板。
+Los complementos estan orientados al usuario, por lo que debe escribir instrucciones de uso, casos, etc. para su complemento, o al mismo tiempo generar un espacio para que sus usuarios lo utilicen directamente. wiki Plantilla。
 
-进一步的，你需要发布你的插件，同时将你编写的文档发布到互联网上——如果能够同步生成一个实时更新的插件库供你的用户订阅，那就更棒了！
+Ademas, debe publicar su complemento y publicar el documento que escribio en Internet; seria aun mejor si pudiera generar simultaneamente una biblioteca de complementos actualizada en tiempo real para que sus usuarios se suscriban.！
 
-达到这样的目的很简单，你只需要在 dev 开发模式下，正常的添加 tiddler 、按安装第三方插件或者装饰和配置 wiki 页面。
+Para lograr este objetivo es muy sencillo, solo necesitas dev En modo desarrollo, agregue normalmente tiddler 、Presione para instalar complementos de terceros o decoracion y configuracion. wiki Pagina。
 
-随后关闭开发模式，使用 `npm run publish` 指令即可一键构建插件、插件库和文档网页于 dist 文件夹内，进而你就可以将 dist 内的内容发布到你的网络服务器上。
+Luego apaga el modo de desarrollo y usa `npm run publish` Utilice el comando para crear complementos, bibliotecas de complementos y paginas web de documentacion con un solo clic. dist carpeta, luego puedes poner dist Publique contenido en su servidor web.。
 
-而如果你使用 <$text text="GitHub" /> 并将 <$text text="GitHub" /> Page 作为你的静态页面服务，则不需要手动运行 `npm run publish`，而只需要进行 push 操作，后续步骤将自动执行。而如果你为本次提交添加了 `vX.Y.Z` 形式的 tag，还会同时发布 Release。这些自动化脚本位于 `.github/workdlows` 中，你可自行修改。
+Y si usas <$text text="GitHub" /> y lo hara <$text text="GitHub" /> Page Como servicio de pagina estatica, no es necesario ejecutarlo manualmente. `npm run publish`，Y simplemente hazlo push Operacion, los pasos siguientes se realizaran automaticamente. Y si agregaste para este envio `vX.Y.Z` formales tag，Tambien se estrenara simultaneamente. Release。Estos scripts de automatizacion se encuentran en `.github/workdlows` Puedes modificarlo tu mismo。
 
 @@color:red;font-weight:900;
-注意：在每次发布插件时，别忘了在 plugin.info 中更新对应插件的版本！
+Nota: cada vez que publique un complemento, no olvide plugin.info Actualice la version del complemento correspondiente.！
 @@
 
 ---
 
-! 建议使用插件库发布你的插件
+! Se recomienda utilizar la biblioteca de complementos para publicar su complemento.
 
-如果你还不清楚什么是插件库：插件库是 <$text text="TiddlyWiki" /> 提供的一种机制，其本身是一个 tiddler，包含了对这个插件库的描述，以及插件库数据的应的 url，在你打开 [[$:/ControlPanel]] 的 [插件] 并点击 [获取更多插件] 时，<$text text="TiddlyWiki" /> 就会加载所有插件库的数据，让用户能够检索、安装和更新这些插件库所提供的插件。
+Si aun no sabes que es una biblioteca de complementos: una biblioteca de complementos es <$text text="TiddlyWiki" /> Proporcionar un mecanismo que sea en si mismo un tiddler，Contiene una descripcion de esta biblioteca de complementos y los datos correspondientes de la biblioteca de complementos. url，Antes de abrir [[$:/ControlPanel]] de [Complementos] y haga clic [Obten mas complementos] tiempo，<$text text="TiddlyWiki" /> Se cargaran los datos de todas las bibliotecas de complementos, lo que permitira a los usuarios recuperar, instalar y actualizar los complementos proporcionados por estas bibliotecas de complementos.。
 
-因此我建议你应当使用插件库发布自己的插件，并要求你的插件使用者安装你的插件库。这样用户就可以在你发布新的插件后自动更新了，也可以借此宣传你的其他插件，因为他们都会在同一个插件库内。
+Por lo tanto, le sugiero que utilice la biblioteca de complementos para publicar su complemento y pedir a sus usuarios de complementos que instalen su biblioteca de complementos. De esta manera, los usuarios pueden actualizar automaticamente despues de lanzar un nuevo complemento y tambien pueden usarlo para promocionar sus otros complementos porque todos estaran en la misma biblioteca de complementos.。
 
-进一步的，欢迎你将你的插件发布在 CPL 上，CPL 是 <$text text="TiddlyWiki" /> 当前最好的公共插件库，类似于 App Store，未来将会被 <$text text="TiddlyWiki" /> 作者 Jermolene [[纳入 TiddlyWiki 内部功能|https://github.com/Jermolene/TiddlyWiki5/pull/7106]]（但是依旧需要时间），CPL集合了非常多各式各样很酷的插件，这样可以使你获得更多的用户量！加入的方法就是直接提[[Issue|https://github.com/tiddly-gittly/TiddlyWiki-CPL/issues]]。
+Ademas, puedes publicar tu complemento en CPL Sube，CPL Si <$text text="TiddlyWiki" /> Actualmente, la mejor biblioteca publica de complementos, similar a App Store，El futuro sera <$text text="TiddlyWiki" /> Autor Jermolene [[Inclusion TiddlyWiki Funciones internas|https://github.com/Jermolene/TiddlyWiki5/pull/7106]]（Pero todavia lleva tiempo），CPLRecopila muchos complementos interesantes que pueden ayudarte a conseguir mas usuarios. La forma de unirse es enviarlo directamente.[[Issue|https://github.com/tiddly-gittly/TiddlyWiki-CPL/issues]]。
 
-如何创建一个插件库 tiddler：插件库 tiddler 需要携带 `$:/tags/PluginLibrary` tag 并在 url 字段指定插件库 html 文件的位置，可以参考 [[$:/config/TiddlyWiki-CPL/GitHub]]。
+Como crear una biblioteca de complementos tiddler：Biblioteca de complementos tiddler Necesidad de llevar `$:/tags/PluginLibrary` tag Y en url Biblioteca de complementos especificada en el campo html Para conocer la ubicacion del archivo, consulte [[$:/config/TiddlyWiki-CPL/GitHub]]。
 
-! 如果你想发布一个 wiki 模板
+! Si quieres publicar un wiki Plantilla
 
-<$text text="GitHub" /> Action 脚本使用`npm run publish`，其会将 wiki 发布为线上版本，线上版本为了优化加载时间，将 <$text text="TiddlyWiki" /> 核心 与其他媒体文件都导出在外部，因此 index.html 无法作为单文件 Wiki 使用。如果希望发布 Wiki 模板，请改用 `npm run publish:offline`。
+<$text text="GitHub" /> Action Uso de guiones`npm run publish`，Lo hara wiki Publicado como version en linea. Para optimizar el tiempo de carga, la version online <$text text="TiddlyWiki" /> Los archivos principales y otros archivos multimedia se exportan externamente, por lo que index.html No se puede utilizar como un solo archivo Wiki Uso. Si deseas publicar Wiki Plantilla, utilice en su lugar `npm run publish:offline`。

@@ -73,7 +73,7 @@ pnpm run test:playwright:debug
 
 Debug mode opens Playwright Inspector and pauses execution, recommended when you cannot observe the headed browser clearly.
 
-See [[012-About debugging|$:/plugins/Modern.TiddlyDev/doc/tutorials/en/012-关于调试]] for details.
+See [[012-About debugging|$:/plugins/Modern.TiddlyDev/doc/tutorials/en/012-Acerca de la depuracion]] for details.
 
 !! Building plugins
 

@@ -1,13 +1,13 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/009-add-shadow-tiddler
-caption: 添加tiddler的多种方法
+caption: AgregartiddlerVarios metodos
 authors: Sttot(Gk0Wk)
 type: text/vnd.tiddlywiki
 
-万事开头难，我们已经成功创建了一个插件，可喜可贺！不过...如何为插件添加内容呢？直接在文件夹内创建文件就可以吗？如何排除掉不想包括的文件？我们继续来探究。
+Todo es dificil al principio. Hemos creado con exito un complemento. ¡Felicidades! Sin embargo...¿Como agregar contenido al complemento? ¿Esta bien crear el archivo directamente en la carpeta? ¿Como excluir archivos que no deseas incluir? Sigamos explorando。
 
-! 最简单的方法：直接在文件夹内添加文件
+! La forma mas sencilla: agregar archivos directamente en la carpeta
 
-尝试在`src/abc/`下添加一个叫`readme.tid`的文件，文件的内容为：
+Intenta`src/abc/`Agrega una linea llamada`readme.tid`El archivo, el contenido del archivo es：
 
 ```tiddlywiki5
 title: $:/plugins/XiaoMing/abc/readme
@@ -15,25 +15,25 @@ title: $:/plugins/XiaoMing/abc/readme
 Hello!
 ```
 
-会发现插件`$:/plugins/XiaoMing/abc`里多了一个`$:/plugins/XiaoMing/abc/readme`的shadow tiddler，说明添加成功了！所以以最简单的方式就是直接添加`.tid`文件。
+Se encontraran complementos`$:/plugins/XiaoMing/abc`Hay uno mas`$:/plugins/XiaoMing/abc/readme`deshadow tiddler，¡Descripcion agregada exitosamente! Entonces la forma mas sencilla es agregarlo directamente.`.tid`Documentacion。
 
-现在尝试添加一些别的，比如添加一张`example.png`的图片，会发生什么？
+Ahora intenta agregar algo mas, como agregar un`example.png`Imagen de lo que pasa？
 
-图片确实被加载进来了，不过其对应的shadow tiddler的名字变成了文件的绝对路径...我认为这绝不是我们想看到的。事实上`.js`、`.css`等文件也会出现一样的状况。同时，这些文件没法附带元数据(例如标题、tags、类型和各种field)，这肯定是不行的，所以必须用别的办法为其添加元数据。
+La imagen efectivamente esta cargada, pero su correspondienteshadow tiddlerEl nombre se convierte en la ruta absoluta del archivo....Creo que esto nunca es lo que queremos ver. de hecho`.js`、`.css`La misma situacion ocurrira al esperar archivos. Al mismo tiempo, estos archivos no pueden ir acompanados de metadatos.(Por ejemplo titulo、tags、Tipos y variedadesfield)，Esto definitivamente no es posible, por lo que debes usar otros metodos para agregarle metadatos.。
 
-注意：在 <$text text="Modern.TiddlyDev" /> 中，如上形式的文件将不会被包含。
+NOTA: En <$text text="Modern.TiddlyDev" /> En, no se incluiran los ficheros en el formulario anterior。
 
-最简单的办法是，将其改为`.tid`后缀，然后用`.tid`的格式在开头定义元数据，同时定义`type`，最后把本来的内容作为`.tid`的文本内容。
+La forma mas sencilla es cambiarlo a`.tid`sufijo, luego use`.tid`El formato define los metadatos al principio y tambien define`type`，Finalmente, utilice el contenido original como`.tid`Contenido del texto de。
 
-但这样做的弊端也很大，首先就是不便于编辑；其次对于二进制还需要转换为base64格式，这是很麻烦而且占空间的做法。
+Pero las desventajas de hacer esto tambien son grandes. En primer lugar, es inconveniente editar; en segundo lugar, el binario debe convertirse abase64Formatear, esto es muy problematico y ocupa espacio.。
 
 ---
 
-! 我想保留原始后缀名，但也想为其加上元数据...
+! Quiero conservar el sufijo original, pero tambien quiero agregarle metadatos....
 
-如果你观察过`tiddlers`文件夹，你会看到一种`.meta`格式的文件，没错，它们就是对非`.tid`格式的文件进行辅助说明的元数据文件。
+Si has observado`tiddlers`carpeta, vera una`.meta`Formatear archivos, si, tienen razon y estan mal`.tid`Archivos de metadatos para descripcion auxiliar de archivos de formato.。
 
-假如，对于上文提到的`example.png`，我们希望能够将其命名为`$:/plugins/XiaoMing/abc/exmaple.png`，并且带上一个叫`12345`的标签，我们可以在同目录下创建一个`example.png.meta`，它会自动与`esample.png`绑定，我们在里面写上：
+Si por lo anterior`example.png`，Nos gustaria poder ponerle nombre`$:/plugins/XiaoMing/abc/exmaple.png`，Y trae a alguien llamado`12345`Para las etiquetas, podemos crear una en el mismo directorio.`example.png.meta`，Funcionara automaticamente con`esample.png`Encuadernacion, escribimos en ella.：
 
 ```properties
 title: $:/plugins/XiaoMing/abc/exmaple.png
@@ -41,23 +41,23 @@ type: image/png
 tags: 12345
 ```
 
-好，这次舒服多了！
+Vale, esta vez me siento mas comodo.！
 
 ---
 
-! 目录套目录？
+! Catalogo dentro del catalogo？
 
-如果在`src/abc/`下面再加一个`1`目录，会发生什么呢？动手试一下会发现，什么都没有；但是如果在`1`中再加一个文件，就会发现被添加的文件出现在了插件中。
+Si en`src/abc/`Agrega uno mas a continuacion`1`Directorio, ¿que pasa? Si lo intentas, encontraras que no hay nada; pero si tu`1`Agregue otro archivo al complemento y vera que el archivo agregado aparece en el complemento.。
 
-因此插件内是可以继续套目录的，只不过最终读取的是文件而不是目录，所以如果目录为空，那么什么都不会有。
+Por lo tanto, puede continuar agregando directorios en el complemento, pero al final, se leen archivos en lugar de directorios, por lo que si el directorio esta vacio, no habra nada.。
 
-! `tiddlywiki.files`: 这个目录下，我说了算！
+! `tiddlywiki.files`: En este directorio, yo tengo la ultima palabra！
 
-如果我想要排除掉一些文件和文件夹，该怎么办？可以在想要排除文件的那一层目录下创建一个`tiddlywiki.files`文件。当 <$text text="TiddlyWiki" /> 解析插件时，如果看到目录下面有`tiddlywiki.files`，就不会继续搜索该文件夹下的其他文件和文件夹，在这一个文件夹下面，`tiddlywiki.files`一个人说了算！
+¿Que debo hacer si quiero excluir algunos archivos y carpetas? Puede crear un directorio en el directorio donde desea excluir archivos.`tiddlywiki.files`Documentacion. cuando <$text text="TiddlyWiki" /> Al analizar el complemento, si ve que hay un`tiddlywiki.files`，No continuara buscando otros archivos y carpetas en esta carpeta. Bajo esta carpeta，`tiddlywiki.files`Una persona tiene la ultima palabra！
 
-`tiddlywiki.files`文件描述了在这个文件夹下，应当加载哪些文件，以及哪些子文件夹下的哪些文件，而且可以为文件添加元数据信息，接下来我们来看看它怎么用。
+`tiddlywiki.files`El archivo describe que archivos deben cargarse en esta carpeta y que archivos en que subcarpetas, y puede agregar informacion de metadatos a los archivos. A continuacion, veamos como usarlo.。
 
-注意`tiddlywiki.files`也是JSON文件，以下是一个例子：
+Atencion`tiddlywiki.files`TambienJSONDocumentacion, el siguiente es un ejemplo.：
 
 ```json
 {
@@ -106,23 +106,23 @@ tags: 12345
 }
 ```
 
-看起来有点复杂，但很多字段都是可选的，我们按层级来一个一个解读：
+Parece un poco complicado, pero muchos campos son opcionales. Vamos a explicarlos uno por uno segun el nivel.：
 
-* `tiddlers`【可选】：包含的tiddler，没有出现在里面的，就是被排除的；
-** `file`【必填】：以`tiddlywiki.files`所在文件夹为根目录，被包括的tiddler的相对位置。
-** `isTiddlerFile`【可选】：是不是原生的 <$text text="TiddlyWiki" /> 文件类型(如`.tid`)，如果不是或者不填，则会自动根据文件后缀名来判断文件到底是纯文本还是二进制，从而选择使用`utf8`编码读入或者`base64`读入。不会影响到`type`。
-** `fields.type`【可选】：写在`fields`中，指tiddler的类型，如果不写就根据文件后缀名做推断，推断不出来就视为`text/plain`。
-** `fields`【可选】：就是字段了。字段接受三种类型：字符串、数组(等同于为以空格分隔的字符串)以及对象，这里说一下对象，虽然不常用，但是或许用的上：
-**: (fields中的对象类型数据说明，搬到了文末)
-**: @@color:red;注意：''无论有无`fields`，TiddlyWiki都会尝试寻找文件对应的`.meta`元数据文件，最后会将`fields`和`.meta`内的元数据合并作为tiddler的元数据；对于同名的field，`.meta`会覆盖`fields`的。''@@
-** `prefix`【可选】：为tiddler的内容添加前缀，等价于在`fields`中写：
+* `tiddlers`【Opcional】：Incluidotiddler，Lo que no esta incluido queda excluido；
+** `file`【Requerido】：a`tiddlywiki.files`La carpeta es el directorio raiz y esta incluida.tiddlerLa posicion relativa de。
+** `isTiddlerFile`【Opcional】：¿Es nativo? <$text text="TiddlyWiki" /> tipo de archivo(Como por ejemplo`.tid`)，Si no se completa o no se completa, determinara automaticamente si el archivo es de texto sin formato o binario segun el nombre del sufijo del archivo y luego elegira usar`utf8`Lectura de codigos o`base64`Leer in. no afectara`type`。
+** `fields.type`【Opcional】：Escrito en`fields`Medio, se refiere atiddlerSi el tipo no esta escrito, se inferira en funcion del nombre del sufijo del archivo. Si no se puede inferir, se considerara como`text/plain`。
+** `fields`【Opcional】：Es el campo. Los campos aceptan tres tipos: cadena, matriz(Equivalente a una cadena separada por espacios)Ademas de objetos, hablemos aqui de objetos. Aunque no se utilizan habitualmente, se pueden utilizar.：
+**: (fieldsLa descripcion de los datos del tipo de objeto se ha movido al final del articulo.)
+**: @@color:red;Atencion：''Con o sin`fields`，TiddlyWikiIntentara encontrar el archivo correspondiente a`.meta`El archivo de metadatos finalmente estara`fields`y`.meta`Metadatos dentro de la fusion comotiddlermetadatos; por el mismo nombrefield，`.meta`Cubrira`fields`de。''@@
+** `prefix`【Opcional】：paratiddlerAgregar un prefijo al contenido equivale a`fields`escritura china：
 **: <div>
 
 ```json
 "text": { "prefix": "xxx" }
 ```
 </div>
-** `suffix`【可选】：为tiddler的内容添加后缀，等价于在`fields`中写：
+** `suffix`【Opcional】：paratiddlerAgregar un sufijo al contenido equivale a`fields`escritura china：
 **: <div>
 
 ```json
@@ -130,18 +130,18 @@ tags: 12345
 ```
 </div>
 
-* `directories`【可选】：包含的子路径，如果没有出现在里面的子文件夹就是被排除的；`directories`数组内可能有两种类型的数据：
-** 如果是字符串类型，那么就是包含对应名称的文件夹；
-** 如果是对象类型，就说明是指定了要读取子路径下的指定文件，其内可能有如下字段：
-*** `path`【必填】：要读取的子路径(相对路径)；
-*** `filesRegExp`【可选】：子路径下要包含的文件，基于正则表达式筛选，不写就是全部文件；
-*** `isTiddlerFile`【可选】：同`tiddlers.isTiddlerFile`，会应用到子路径下所有匹配的文件上；
-*** `fields`【可选】：同`tiddlers.fields`，会应用到子路径下所有匹配的文件上，也会去寻找`.meta`文件，规则同上；
-*** `isEditableFile`【可选】：如果为`true`，那么这个tiddler就不是shadow tiddler，修改它就会变更插件对应的文件，而不是创建一个新的tiddler来覆盖它。
+* `directories`【Opcional】：Las subrutas incluidas, si no aparecen subcarpetas en ellas, se excluyen.；`directories`Puede haber dos tipos de datos en la matriz.：
+** Si es del tipo cadena, entonces es la carpeta que contiene el nombre correspondiente.；
+** Si es un tipo de objeto, significa que se leera el archivo especificado en la subruta y puede contener los siguientes campos.：
+*** `path`【Requerido】：Subruta para leer(Caminos relativos)；
+*** `filesRegExp`【Opcional】：Los archivos que se incluiran en la subruta se filtran segun expresiones regulares. Si no se escribe, se incluiran todos los archivos.；
+*** `isTiddlerFile`【Opcional】：Igual que`tiddlers.isTiddlerFile`，Se aplicara a todos los archivos coincidentes en la subruta.；
+*** `fields`【Opcional】：Igual que`tiddlers.fields`，Se aplicara a todos los archivos coincidentes en la subruta y tambien se buscara.`.meta`Los documentos, las reglas son las mismas que las anteriores.；
+*** `isEditableFile`【Opcional】：Si`true`，Entonces estotiddlerNo lo esshadow tiddler，Modificarlo cambiara el archivo correspondiente al complemento en lugar de crear uno nuevo.tiddlerPara taparlo。
 
-!! fields中的对象类型数据
+!! fieldsDatos de tipo de objeto en
 
-如果一个`field`的类型是对象，那么它的意思就是按指定的方式生成一些数据，其格式是这样的：
+Si un`field`El tipo es objeto, entonces significa generar algunos datos de una manera especifica y su formato es asi：
 
 ```json
 {
@@ -151,16 +151,16 @@ tags: 12345
 }
 ```
 
-`source`【必填】是指应当生成什么样的数据，可以有如下几种：
+`source`【Requerido】Se refiere a que tipo de datos se deben generar, los cuales pueden ser los siguientes:：
 
-* `filename`：获取`fields`对应的tiddler文件的文件名作为字段的数据；
-* `filename-uri-decoded`：同上，并对文件名进行了URI编码；
-* `basename`：同`fieldname`，但去掉了文件的类型后缀`.xxx`；
-* `basename-uri-decoded`：同上，并对其进行了URI编码；
-* `extname`：获取文件的后缀名(含`.`)；
-* `created`：获取文件(在文件系统中)的创建时间，返回的是`Date`类型；
-* `modified`：获取文件(在文件系统中)的修改时间，返回的是`Date`类型；
+* `filename`：conseguir`fields`correspondientetiddlerEl nombre del archivo como los datos del campo.；
+* `filename-uri-decoded`：Igual que arriba, con el nombre del archivo modificado.URICodificacion；
+* `basename`：Igual que`fieldname`，Pero se elimina el sufijo del tipo de archivo.`.xxx`；
+* `basename-uri-decoded`：Igual que el anterior, y modificado.URICodificacion；
+* `extname`：Obtener extension de archivo(Incluyendo`.`)；
+* `created`：Obtener archivos(En el sistema de archivos.)El tiempo de creacion de`Date`Escribe；
+* `modified`：Obtener archivos(En el sistema de archivos.)La hora de modificacion de, lo que se devuelve es`Date`Escribe；
 
-`prefix`【可选】：为生成的数据添加前缀；
+`prefix`【Opcional】：Agregue prefijo a los datos generados.；
 
-`suffix`【可选】：为生成的数据添加后缀；
+`suffix`【Opcional】：Agregue sufijo a los datos generados.；

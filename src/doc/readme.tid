@@ -10,7 +10,7 @@ type: text/vnd.tiddlywiki
 <$list filter="[[$:/language]get[text]removeprefix[$:/languages/]else[en-GB]]" variable="lang">
 <$list filter="[<lang>search[zh]]">
 
-<div style="background: #282828; color: #03fffc; border: 0.75px solid #03fffca8; border-radius: 10px; padding: 16px; background-image: linear-gradient(0, #03fffc1f, #03fffc1f)">这个页面只是用来介绍 Modern 的功能的，<br/>如需进一步阅读，看到上面的 [tutorials] 了吗？点击它阅读详细教程！</div>
+<div style="background: #282828; color: #03fffc; border: 0.75px solid #03fffca8; border-radius: 10px; padding: 16px; background-image: linear-gradient(0, #03fffc1f, #03fffc1f)">Esta pagina es solo para introduccion. Modern funcional，<br/>Para mas informacion, ver arriba. [tutorials] ¿Ya? Haga clic en el para leer el tutorial detallado.！</div>
 
 @@display:flex;align-items:center;justify-content:center;background:#222222;border-radius:10px;overflow:hidden;
 [img class="modern-tiddlydev-banner" [$:/plugins/Modern.TiddlyDev/doc/banner.png]]
@@ -19,7 +19,7 @@ type: text/vnd.tiddlywiki
 Switch language: {{$:/snippets/minilanguageswitcher}}
 
 @@display:flex;align-items:center;justify-content:center;
-! 欢迎使用 <$text text="Modern.TiddlyDev" />! 🎉
+! Bienvenido <$text text="Modern.TiddlyDev" />! 🎉
 @@
 
 @@display:flex;align-items:center;justify-content:center;
@@ -31,50 +31,50 @@ Switch language: {{$:/snippets/minilanguageswitcher}}
 
 @@display:flex;align-items:center;justify-content:center;
 <a href="https://github.com/tiddly-gittly/Modern.TiddlyDev">[img[https://img.shields.io/github/license/tiddly-gittly/Modern.TiddlyDev?style=for-the-badge&label=%E5%BC%80%E6%BA%90%E8%AE%B8%E5%8F%AF]]</a>&nbsp;&nbsp;
-<a href="https://github.com/tiddly-gittly">[img[https://img.shields.io/badge/加入-太微_中文社区-blue?style=for-the-badge]]</a>&nbsp;&nbsp;
+<a href="https://github.com/tiddly-gittly">[img[https://img.shields.io/badge/Unete-Demasiado pequeno_comunidad china-blue?style=for-the-badge]]</a>&nbsp;&nbsp;
 <a href="https://github.com/Gk0Wk">[img[https://img.shields.io/github/followers/Gk0Wk?style=for-the-badge&label=Gk0Wk&color=critical]]</a>
 @@
 
-<$text text="Modern.TiddlyDev" /> 是一套基于现代前端技术栈打造、面向各种 <$text text="TiddlyWiki" /> 插件开发者的一键式开发环境，有如下功能及特点：
+<$text text="Modern.TiddlyDev" /> Es un conjunto de pilas de tecnologia front-end modernas para varios <$text text="TiddlyWiki" /> Entorno de desarrollo con un solo clic para desarrolladores de complementos, con las siguientes funciones y caracteristicas：
 
-* 一键编译、测试、发布插件：
-** 开发模式下开启页面服务器，可在浏览器进行测试，自动检测插件文件变更并将插件内容更新同步到浏览器页面，实现插件开发的所见即所得；
-** 一键构建插件，并支持生成插件仓库，供你的订阅者使用；
-** 已内置 <$text text="GitHub" /> Page 发布脚本，自动将写好的插件文档页面及插件仓库发布至互联网；
-** 内置 <$text text="GitHub" /> Release 脚本，根据 git tag 指定版本发布插件；
-* 专为 <$text text="TypeScript" /> 插件开发量身定制，从此可以轻松在 <$text text="TiddlyWiki" /> 中使用 <$text text="TypeScript" /> 开发；
-** 支持多入口文件编译，可以在 <$text text="TiddlyWiki" /> 中轻松编写各种插件：
-** 支持 `.ts`, `.tsx`, `.jsx`, `.mjs`, `.cjs` 文件编译，配合 [[tw-react|https://github.com/tiddly-gittly/tw-react]] 插件可在 <$text text="TiddlyWiki" /> 中进行 React 开发；
-** 使用 [[tw5-typed|https://github.com/tiddly-gittly/TW5-Typed]] 对 <$text text="TiddlyWiki API" /> 进行类型注释，为开发带来原生 <$text text="TypeScript" /> 体验；
-** 使用 [[Modern.JS|https://modernjs.dev/]] 提供的全量 ESLint 与 Prettier 规则，对代码进行规范化约束；
-** 使用速度极快的 [[esbuild|https://esbuild.github.io/]] 进行项目增量构建，让写代码也能酣畅淋漓；
-** 支持使用 [[browserslist|https://browsersl.ist/]] 为插件设定浏览器兼容范围；
-** 自动为源码生成 sourcemap （开发时默认启动，构建时可指定开启），调试不用愁！
-** 可在代码中处理 CSS、JSON 等内容的引入；
-** 支持 Less、Sass、Stylus和 tailwind CSS；
-** 自动对插件进行体积压缩（可关闭）；
-** 自动对生成的插件生成哈希校验签名；
-
-
-快速开始：使用命令创建一个插件项目。
-
-* 你已安装必要工具：git、nodejs。
-* 使用命令创建新的项目并对npm进行加速：`npx tiddlywiki-plugin-dev@latest init --npm http://registry.npmmirror.com <项目文件夹名称>`
-* 使用命令创建插件：`npm run new`，然后根据导引填写信息。
-* 阅读教程开始探险与开发之旅。
+* Compile, pruebe y publique complementos con un solo clic：
+** Encienda el servidor de paginas en modo de desarrollo y pruebelo en el navegador, detecte automaticamente los cambios en los archivos del complemento y sincronice las actualizaciones del contenido del complemento con la pagina del navegador, implementando WYSIWYG en el desarrollo del complemento.；
+** Cree complementos con un solo clic y admita la generacion de almacenes de complementos para que los utilicen sus suscriptores；
+** Incorporado <$text text="GitHub" /> Page Publique un script para publicar automaticamente la pagina de documentacion escrita del complemento y el almacen de complementos en Internet.；
+** Incorporado <$text text="GitHub" /> Release Guion, basado en git tag Publicar complemento en la version especificada；
+* Disenado para <$text text="TypeScript" /> Desarrollo de complementos personalizados, puede facilmente <$text text="TiddlyWiki" /> utilizado en <$text text="TypeScript" /> Desarrollo；
+** Admite la compilacion de archivos de multiples entradas, que pueden ser <$text text="TiddlyWiki" /> Escribe facilmente varios complementos：
+** Apoyo `.ts`, `.tsx`, `.jsx`, `.mjs`, `.cjs` Recopilacion y coordinacion de expedientes [[tw-react|https://github.com/tiddly-gittly/tw-react]] Los complementos estan disponibles en <$text text="TiddlyWiki" /> En progreso React Desarrollo；
+** uso [[tw5-typed|https://github.com/tiddly-gittly/TW5-Typed]] Derecha <$text text="TiddlyWiki API" /> Realizar anotaciones tipograficas para llevar la natividad al desarrollo. <$text text="TypeScript" /> Experiencia；
+** uso [[Modern.JS|https://modernjs.dev/]] Cantidad total proporcionada ESLint con Prettier Reglas para estandarizar y restringir el codigo.；
+** Usalo extremadamente rapido [[esbuild|https://esbuild.github.io/]] Lleve a cabo una construccion incremental del proyecto para que escribir codigo sea agradable.；
+** Uso de soporte [[browserslist|https://browsersl.ist/]] Establecer el rango de compatibilidad del navegador para el complemento；
+** Generar codigo fuente automaticamente sourcemap （Esta habilitado de forma predeterminada durante el desarrollo y se puede habilitar durante la construccion), por lo que no tiene que preocuparse por la depuracion.！
+** Se puede manejar en codigo CSS、JSON Introduccion de otros contenidos；
+** Apoyo Less、Sass、Stylusy tailwind CSS；
+** Comprime automaticamente el volumen de los complementos (se puede desactivar）；
+** Genere automaticamente una firma de verificacion de hash para el complemento generado；
 
 
-别担心，即便你并不擅长编程开发，也没有关系，<$text text="Modern.TiddlyDev" /> 同样可以成为你的开发利器。无代码插件开发同样可以获得愉快的开发体验！
+Inicio rapido: cree un proyecto de complemento usando el comando。
 
-虽然这里有很多工作，但是对你来讲，它就是开箱即用的。快来使用它，步入现代化的 <$text text="TiddlyWiki" /> 插件开发之旅吧！
+* Has instalado las herramientas necesarias.：git、nodejs。
+* Utilice el comando para crear un nuevo proyecto ynpmAcelerar：`npx tiddlywiki-plugin-dev@latest init --npm http://registry.npmmirror.com <Nombre de la carpeta del proyecto>`
+* Crear complemento usando el comando：`npm run new`，Luego complete la informacion de acuerdo con la guia.。
+* Lea el tutorial para comenzar el viaje de aventura y desarrollo.。
 
-> 运用插件构建工具的优势，本框架的文档也被封装为插件并发布于 [[CPL 插件源|https://github.com/tiddly-gittly/TiddlyWiki-CPL]]，以便你下载并安装与任意项目中并保持文档的最新；
 
-接下来请点击下方的按钮进入教程页面，如果你是在插件库中看到该插件的话，请先安装或者浏览[[官方文档|https://tiddly-gittly.github.io/Modern.TiddlyDev/]]。
+No te preocupes, no importa si no eres bueno en programacion y desarrollo.，<$text text="Modern.TiddlyDev" /> Tambien puede ser tu herramienta de desarrollo. El desarrollo de complementos sin codigo tambien puede proporcionar una experiencia de desarrollo agradable！
+
+Aunque hay mucho trabajo aqui, para ti funciona de inmediato. Ven a usarlo y adentrate en lo moderno. <$text text="TiddlyWiki" /> Viaje de desarrollo de complementos！
+
+> Aprovechando las herramientas de creacion de complementos, los documentos de este marco tambien se encapsulan como complementos y se publican en [[CPL Fuente del complemento|https://github.com/tiddly-gittly/TiddlyWiki-CPL]]，Para que puedas descargarlo e instalarlo en cualquier proyecto y mantener la documentacion actualizada.；
+
+A continuacion, haga clic en el boton a continuacion para ingresar a la pagina del tutorial. Si ve el complemento en la biblioteca de complementos, instalelo o examinelo primero.[[Documentacion oficial|https://tiddly-gittly.github.io/Modern.TiddlyDev/]]。
 
 <center>
 <$button setTitle=<<tabsState>> setField="text" setTo="tutorials" style="margin: 20px 0; padding: 14px 20px; border-radius: 4px; border: none; background: #03fffc; color: black; font-weight: 650; cursor: pointer;">
-→ 进入教程 ←
+→ Ingresar al tutorial ←
 </$button>
 </center>
 
@@ -87,7 +87,7 @@ Switch language: {{$:/snippets/minilanguageswitcher}}
 [img class="modern-tiddlydev-banner" [$:/plugins/Modern.TiddlyDev/doc/banner.png]]
 @@
 
-切换语言: {{$:/snippets/minilanguageswitcher}}
+Cambiar idioma: {{$:/snippets/minilanguageswitcher}}
 
 @@display:flex;align-items:center;justify-content:center;
 ! Welcome to <$text text="Modern.TiddlyDev" />! 🎉

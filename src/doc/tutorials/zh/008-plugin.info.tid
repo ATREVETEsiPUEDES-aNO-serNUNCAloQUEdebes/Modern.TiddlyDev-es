@@ -1,39 +1,39 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/008-plugin.info
-caption: plugin.info文件介绍
+caption: plugin.infoIntroduccion del documento
 authors: Sttot(Gk0Wk)
 type: text/vnd.tiddlywiki
 
-`plugin.info` 是JSON格式，可以包含如下字段：
+`plugin.info` SiJSONFormato, puede incluir los siguientes campos：
 
-* `title`【必填】：插件的标题，请遵命名规范：`$:/plugins/你的名字/插件的名字`；
+* `title`【Requerido】：Siga la convencion de nomenclatura para el titulo del complemento.：`$:/plugins/tu nombre/Nombre del complemento`；
 
-* `type`【可选】：必须为`application/json`，就算写别的也会被改回来；
+* `type`【Opcional】：Debe ser`application/json`，Incluso si escribo algo mas, se volvera a cambiar.；
 
-* `version`【可选】：插件的版本号，建议是 `数字.数字.数字`，主要用于更新检测：
-*: 如果你发布更新时不改变版本号，那么只能 <button class="tc-reinstall tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}重新安装</button>；如果把版本号变小，就会 <button class="tc-reinstall-downgrade tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}降级</button>；如果把版本号变大，就是 <button class="tc-reinstall-upgrade tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}升级</button>；
-*: 同时，如果版本号没有已经安装的版本大，直接将JSON拖动到浏览器是没法安装的，只能卸载然后重新装；
-*: 如果 `version` 不填，那么默认就和开发环境的 <$text text="TiddlyWiki" /> 版本号一致(当前版本号：<<version>>)；
+* `version`【Opcional】：Se recomienda indicar el numero de version del complemento. `Numeros.Numeros.Numeros`，Se utiliza principalmente para la deteccion de actualizaciones.：
+*: Si publica una actualizacion sin cambiar el numero de version, solo podra <button class="tc-reinstall tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}Reinstalar</button>；Si reduce el numero de version, aparecera <button class="tc-reinstall-downgrade tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}Bajar de categoria</button>；Si el numero de version se aumenta, es decir <button class="tc-reinstall-upgrade tc-btn-invisible tc-install-plugin">{{$:/core/images/download-button}}Actualizar</button>；
+*: Al mismo tiempo, si el numero de version no es mayor que la version instalada, cambie directamenteJSONNo puedes instalarlo arrastrandolo al navegador. Solo puedes desinstalarlo y reinstalarlo.；
+*: Si `version` Si se deja en blanco, la configuracion predeterminada sera la misma que la del entorno de desarrollo. <$text text="TiddlyWiki" /> Los numeros de version son consistentes.(Numero de version actual：<<version>>)；
 
-* `plugin-type`【可选】：插件的类型，可以是 `plugin`、`language`、`theme`、`import`、`library`、`info`、`undefined` 等，主要用的是 `plugin`，其他类型我并没有研究过，欢迎补充。这个如果不填就默认为`plugin`；
+* `plugin-type`【Opcional】：El tipo de complemento que se puede `plugin`、`language`、`theme`、`import`、`library`、`info`、`undefined` Espera, el uso principal es `plugin`，No he estudiado otros tipos, bienvenido a agregar. Si esto no se completa, el valor predeterminado sera`plugin`；
 
-* `dependents`【可选】：前置插件的 title ，安装时会一并将前置插件也安装，如果没有前置插件则会报错。值可以是 title 的列表，也可以是用空格分隔的字符串；
+* `dependents`【Opcional】：Pre-complemento title ，Durante la instalacion, tambien se instalara el complemento de interfaz. Si no hay un complemento de interfaz de usuario, se informara un error. El valor puede ser title Una lista de o una cadena separada por espacios；
 
-* `tiddlers`【可选】：`plugin.info` 中也可以存储一些 tiddler ，一般用于存储一些很小的 tiddler (比如设置、状态什么的)，是一个对象， key 为 tiddler 的 title ，值则为对象，可以包含如下字段：
+* `tiddlers`【Opcional】：`plugin.info` Algunos tambien se pueden guardar en tiddler ，Generalmente se utiliza para guardar algunos pequenos tiddler (Como configuraciones, estado, etc.)，es un objeto， key para tiddler de title ，El valor es un objeto, que puede contener los siguientes campos.：
 ** `text`
-** `fields` (但是 `field` 的值只能是字符串或者列表)
-**: (不知道我有没有漏掉什么，欢迎指正)
-*: @@color:red; 注意：''这里的 tiddler 会被插件文件夹中重名的 tiddler 替代掉'' @@
+** `fields` (Pero `field` El valor de solo puede ser una cadena o una lista)
+**: (No se si me he perdido algo, corrigeme.)
+*: @@color:red; Atencion：''aqui tiddler Se cambiara el nombre en la carpeta de complementos. tiddler reemplazar'' @@
 
-还有一些字段，与插件的解析执行机制无关，但是在 <$text text="TiddlyWiki" /> 中有一些特殊含义：
+Tambien hay algunos campos que no tienen nada que ver con el mecanismo de analisis y ejecucion del complemento, pero que son <$text text="TiddlyWiki" /> Hay algunos significados especiales en：
 
-* `name`【选填】：插件的名称，会显示在插件信息中，主要为了好称呼，一般要写，不一定和 title 中的插件名相同；
-* `description`【选填】：插件的介绍，会显示在插件信息中，简短介绍自己的插件让其更受欢迎，一般会写；
-* `author`【选填】：作者，不一定和 title 中的作者名相同；
-* `source`【选填】：源代码 repo 的 url；
-* `parent-plugin`【选填】：父插件的标题，表示这个插件是一个子插件(比如官方插件中以 `codemirror-` 为前缀的插件都是 `codemirror` 的子插件)，在插件源中，会显示在父插件的展开项内。@@color:red;如果没有父插件就不会在插件源中显示@@；
-* `list`【选填】：点开某些插件的信息，可以看到除了`content`还有`readme`等标签，就是在这里定义的，可以是字符串数组，也可以是 filter 字符串。不过这里要注意，里面填写的不是要显示的 tiddler 的 title ，而是其 “相对” title，要去掉 `$:/plugins/xxx/xxx/` 的前缀，例如想添加 `$:/plugins/XiaoMing/abc/readme` 只需要写 `readme`；
-* `core-version`【选填】：要求的最低核心版本，例如 `>=5.2.0`；
-* `plugin-priority`【选填】：整数，指插件被加载的顺序优先级，越小越优先；
-* `text-direction`【选填】：文字方向，适用于语言包；
+* `name`【Opcional】：El nombre del complemento se mostrara en la informacion del complemento. Esta escrito principalmente con el proposito de nombrarlo y no necesariamente coincide con el nombre. title Los nombres de los complementos en；
+* `description`【Opcional】：La introduccion del complemento se mostrara en la informacion del complemento. Presente brevemente su complemento para hacerlo mas popular. Generalmente escribiras；
+* `author`【Opcional】：El autor no es necesariamente el mismo que title Los nombres de los autores son los mismos.；
+* `source`【Opcional】：Codigo fuente repo de url；
+* `parent-plugin`【Opcional】：El titulo del complemento principal, que indica que este complemento es un complemento secundario.(Por ejemplo, en el complemento oficial, `codemirror-` Complementos con el prefijo `codemirror` Subcomplemento)，En la fuente del complemento, se mostrara en el elemento expandido del complemento principal.。@@color:red;Si no hay un complemento principal, no se mostrara en la fuente del complemento.@@；
+* `list`【Opcional】：Haga clic en la informacion de algunos complementos y podra ver otros ademas de`content`y`readme`Aqui se define la etiqueta de espera. Puede ser una matriz de cadenas o filter Cuerda. Sin embargo, tenga en cuenta aqui que la informacion completada no se puede mostrar. tiddler de title ，Mas bien, su “relativa” title，Para eliminar `$:/plugins/xxx/xxx/` prefijo, por ejemplo si quieres agregar `$:/plugins/XiaoMing/abc/readme` Solo escribe `readme`；
+* `core-version`【Opcional】：Version basica minima requerida, p. `>=5.2.0`；
+* `plugin-priority`【Opcional】：Entero, se refiere a la prioridad del orden en que se cargan los complementos. Cuanto menor sea el numero, mayor sera la prioridad.；
+* `text-direction`【Opcional】：Direccion del texto, aplicable a paquetes de idiomas.；
 
-也可以添加其他的字段，最后将会变成插件 tiddler 的元数据。
+Tambien puedes agregar otros campos, que eventualmente se convertiran en un complemento. tiddler Metadatos。

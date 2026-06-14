@@ -8,9 +8,9 @@ type: text/vnd.tiddlywiki
 <$list filter="[[$:/language]get[text]removeprefix[$:/languages/]else[en-GB]]" variable="lang">
 <$list filter="[<lang>search[zh]]">
 
-作者: <$text text={{{ [<currentTab>get[authors]join[, ]] }}} />
+Autor: <$text text={{{ [<currentTab>get[authors]join[, ]] }}} />
 
-文档需要改进？希望分享经验？欢迎提 [[Issue|https://github.com/tiddly-gittly/Modern.TiddlyDev/issues]] 或者 QQ 群里联系我！
+¿Necesita mejorar la documentacion? ¿Quieres compartir tu experiencia? Bienvenido a mencionar [[Issue|https://github.com/tiddly-gittly/Modern.TiddlyDev/issues]] o QQ Contactame en el grupo！
 
 </$list>
 <$list filter="[<lang>!search[zh]]">

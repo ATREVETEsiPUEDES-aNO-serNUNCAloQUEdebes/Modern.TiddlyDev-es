@@ -1,17 +1,17 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/develop-more-plugins
-caption: 开发更多插件
-authors: mabuqian(马不前)
+caption: Desarrollar mas complementos
+authors: mabuqian(Deja de seguir adelante)
 type: text/vnd.tiddlywiki
 
-同一个仓库里可以同时开发多个插件。这些插件可以归属于子插件，也可以是相关插件。这样就可以避免增加插件仓库，增加过多后期会维护比较难。
+Se pueden desarrollar varios complementos simultaneamente en el mismo almacen. Estos complementos se pueden clasificar como subcomplementos o complementos relacionados. De esta manera puede evitar agregar almacenes enchufables, lo que dificultara el mantenimiento mas adelante.。
 
-开发新的插件跟原来的插件使用到的命令是一样的。
+Los comandos utilizados para desarrollar nuevos complementos son los mismos que los utilizados en los complementos originales.。
 
-`npm run new`或者`pnpm run new`，接下来只要填写相应的插件信息即可。同时会在`src`文件夹下生成一个新的插件文件夹。
+`npm run new`o`pnpm run new`，A continuacion, simplemente complete la informacion del complemento correspondiente. Al mismo tiempo sera`src`Genere una nueva carpeta de complementos debajo de la carpeta。
 
-插件开发完成后，可以提交到CPL上。提交流程则是打开[[CPL仓库|https://github.com/tiddly-gittly/TiddlyWiki-CPL]]，fork一份到自己的仓库中。然后下载下来用[[太记|https://github.com/tiddly-gittly/TidGi-Desktop]]打开。并添加一个新的插件条目。注意在URL字段中添加插件下载的仓库地址，一般形式为`https://github.com/tiddly-gittly/tiddlywiki-plugins/releases/latest/download/$plugin-name$.json`，这样CPL才会搜索到并下载这个插件。
+Una vez completado el desarrollo del complemento, se puede enviar aCPLArriba. El proceso de presentacion esta abierto.[[CPLAlmacen|https://github.com/tiddly-gittly/TiddlyWiki-CPL]]，forkPon una copia en tu propio almacen. Luego descargalo y usalo.[[Taiji|https://github.com/tiddly-gittly/TidGi-Desktop]]Abierto. y agregue una nueva entrada de complemento. presta atencion aURLAgregue la direccion del almacen para la descarga del complemento en el campo; el formulario general es`https://github.com/tiddly-gittly/tiddlywiki-plugins/releases/latest/download/$plugin-name$.json`，Me gusta estoCPLSolo entonces se encontrara y descargara el complemento.。
 
-之后提交PR到CPL仓库，等待管理员审核。审核通过后，就可以在自己的TiddlyWiki中搜索并下载这个插件了。
+Enviar mas tardePRllegarCPLAlmacen, a la espera de revision del administrador. Despues de pasar la revision, puedes agregarla a tuTiddlyWikiBusque y descargue este complemento.。
 
-插件仓库需要发布release，这样CPL才能搜索到最新版本，并且需要按照`v.x.x.x`的格式命名。可以像本仓库一样使用类似`v2024.3.23-1`的版本号。也可以使用类似`0.1.0`的版本号。只要提交了，就会在action中触发`Release Plugins`并自动生成json文件。
+Es necesario publicar el repositorio de complementos.release，Me gusta estoCPLPara buscar la ultima version, debe seguir las instrucciones`v.x.x.x`Dar formato a los nombres. Puedes usar algo como esto como este repositorio`v2024.3.23-1`El numero de version. Tambien puedes usar algo como`0.1.0`El numero de version. Mientras se presente, estara enactionGatillo medio`Release Plugins`Y generado automaticamentejsonDocumentacion。
 

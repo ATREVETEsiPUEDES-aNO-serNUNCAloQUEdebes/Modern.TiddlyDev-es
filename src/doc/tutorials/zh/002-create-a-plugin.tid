@@ -1,63 +1,63 @@
 title: $:/plugins/Modern.TiddlyDev/doc/tutorials/zh/002-create-a-plugin
-caption: 创建一个插件
+caption: Crea un complemento
 authors: Sttot(Gk0Wk)
 type: text/vnd.tiddlywiki
 
-在创建一个插件之前，首先做一些科普：
+Antes de crear un complemento, investigue un poco primero：
 
-# 在 <$text text="TiddlyWiki" /> 中，插件是指将若干条目的内容进行打包所得到的一个条目。即插件本质上是若干条目打包得到的「压缩包」。
+# en <$text text="TiddlyWiki" /> En, un complemento se refiere a una entrada obtenida al empaquetar el contenido de varias entradas. Es decir, el complemento es esencialmente un paquete de varios elementos.「paquete comprimido」。
 
-# 插件本身是一个条目，其包含的被打包的那些条目被称为影子条目。影子条目的特点是，并不会独立存在于 wiki 中，而是在 wiki 加载时从其所在的插件中加载；同时，如果 wiki 中存在与影子条目重名的普通条目，则普通条目会覆盖影子条目的内容（但不会删除影子条目），直到普通条目被删除或改名，才会恢复影子条目本来的内容。通过这个原理可以实现『配置的默认值』，即将某个配置的默认值存储在条目中，若用户设置了新的值则创建普通条目来覆盖，而删除这个普通条目相当于恢复默认配置。
+# El complemento en si es una entrada y las entradas empaquetadas que contiene se denominan entradas ocultas. La caracteristica de las entradas sombra es que no existen de forma independiente en wiki en, pero en wiki Al cargar, se carga desde el complemento en el que se encuentra; al mismo tiempo, si wiki Si hay una entrada ordinaria con el mismo nombre que una entrada oculta, la entrada ordinaria sobrescribira el contenido de la entrada oculta (pero la entrada oculta no se eliminara). El contenido original de la entrada oculta no se restaurara hasta que se elimine o se cambie el nombre de la entrada ordinaria. Este principio se puede lograr『Valores predeterminados de configuracion』，El valor predeterminado de una determinada configuracion se almacena en la entrada. Si el usuario establece un nuevo valor, se creara una entrada normal para sobrescribirlo. Eliminar esta entrada normal equivale a restaurar la configuracion predeterminada.。
 
-# 插件的所有影子条目存储在插件条目的 text 字段中，使用 JSON 序列化的字符串存储。插件还包含其他字段，用于描述插件的版本、名称、加载时机和用途等，详见下文。
+# Todas las entradas ocultas de un complemento se almacenan en la entrada del complemento. text En el campo, utiliza JSON Almacenamiento de cadenas serializadas. El complemento tambien contiene otros campos que se utilizan para describir la version, el nombre, el tiempo de carga y el proposito del complemento, etc.; consulte a continuacion para obtener mas detalles.。
 
-# 由于插件是一个条目，因此也一定要有一个 title，并且需要满足规范命名：`$:/plugins/<作者名>/<插件名>`，且其中的影子条目的 title 也最好是以 `$:/plugins/<作者名>/<插件名>/` 为前缀，这样便于管理与辨认。
+# Dado que un complemento es un elemento, tambien debe haber un title，Y debe cumplir con la denominacion estandar.：`$:/plugins/<Nombre del autor>/<Nombre del complemento>`，Y la entrada de la sombra en el. title Tambien es mejor utilizar `$:/plugins/<Nombre del autor>/<Nombre del complemento>/` es el prefijo para facilitar la gestion y la identificacion.。
 
-# 主题与语言包是插件的两个变种，三者在本质上是一样的，但插件更多提供的是功能上的补充，例如为 wiki 提供了播放音乐的功能；而主题(以`$:/themes/`为前缀)则主要提供视觉效果的改变，例如实现一个二次元风格的 wiki；而语言包(以`$:/languages/`为前缀)则为了提供多语言支持。我们这里主要就插件展开，其他两种，欢迎补充！
+# Los temas y los paquetes de idiomas son dos variantes de complementos. Los tres son esencialmente iguales, pero los complementos proporcionan complementos mas funcionales, como wiki Proporciona la funcion de reproducir musica; y el tema(a`$:/themes/`es un prefijo)Proporciona principalmente cambios de efectos visuales, como realizar un estilo bidimensional. wiki；Y paquete de idiomas(a`$:/languages/`es un prefijo)Proporcionar soporte en varios idiomas. Aqui nos centramos principalmente en complementos y puede agregar los otros dos tipos.！
 
 ---
 
-! 创建一个插件
+! Crea un complemento
 
-首先确定插件的作者名，也就是你的名字，日后你的插件成名了，大家就会记住这个作者的名字 ：D
+Primero determine el nombre del autor del complemento, que es su nombre. Cuando su complemento se vuelva famoso en el futuro, todos recordaran el nombre del autor. ：D
 
-其次确定插件的名称，不多解释。
+A continuacion, determine el nombre del complemento sin mas explicaciones.。
 
-在确定以上两点后，你的插件的 `title` 字段就应当是 `$:/plugins/<作者名>/<插件名>`。
+Despues de determinar los dos puntos anteriores, su complemento `title` El campo debe ser `$:/plugins/<Nombre del autor>/<Nombre del complemento>`。
 
-执行命令：
+Ejecute el comando：
 
 ```bash
 npm run new
 ```
 
-选择你需要添加的插件的类型、作者名和插件名，并添加插件的说明，即可创建一个插件文件夹，即 `src/<插件名>`（下文称为 该文件夹）。
+Seleccione el tipo, el nombre del autor y el nombre del complemento que necesita agregar y agregue una descripcion del complemento para crear una carpeta de complementos, es decir `src/<Nombre del complemento>`（En lo sucesivo, la carpeta）。
 
-在该文件夹中，可以看到一个 `plugin.info` 文件，其描述了插件的各种属性与信息，其格式为 JSON，你可以手动修改它，其中每个字段的意义可以在教程 [plugin.info文件介绍] 中找到。
+En esta carpeta, puedes ver un `plugin.info` Archivo, que describe varias propiedades e informacion del complemento, y su formato es JSON，Puedes modificarlo manualmente, el significado de cada campo lo puedes encontrar en el tutorial [plugin.infoIntroduccion del documento] encontrado en。
 
-还有一个 readme.tid 文件，其中的内容对应你的插件展示页面。
+Uno mas readme.tid Archivo, cuyo contenido corresponde a la pagina de visualizacion de su complemento。
 
 
-运行 `npm run dev` 打开网页，可以看到增加了一个插件：
+correr `npm run dev` Abra la pagina web y podra ver que se ha agregado un complemento.：
 
 <a class="tc-tiddlylink tc-tiddlylink-resolves tc-plugin-info tc-popup-handle tc-popup-absolute"><div class="tc-plugin-info-chunk tc-plugin-info-toggle"><button class="tc-btn-invisible tc-btn-dropdown">{{$:/core/images/chevron-right}}</button></div><div class="tc-plugin-info-chunk tc-plugin-info-icon">{{$:/core/images/plugin-generic-plugin}}</div><div class="tc-plugin-info-chunk tc-plugin-info-description"><h1><strong>my-plugin</strong>:&nbsp;My first plugin</h1><h2>~$:/plugins/my-name/my-plugin</h2><h2><div><em>0.0.1</em></div></h2></div></a>
 
-! 添加影子条目
+! Agregar entradas ocultas
 
-现在这个插件还是空的，只有一个自述文件（Readme.tid），我们需要添加其他影子条目。为插件添加其他内容的是通过直接在插件文件夹中新增文件来实现的。而在网页中直接修改插件内容或者新增条目则是不能改变影子条目的，请牢记。
+Ahora el complemento todavia esta vacio, con solo un archivo Leame.（Readme.tid），Necesitamos agregar entradas de sombra adicionales. Agregar contenido adicional a un complemento se logra agregando archivos directamente a la carpeta del complemento. Sin embargo, modificar directamente el contenido del complemento o agregar nuevas entradas en la pagina web no puede cambiar las entradas ocultas. Por favor tenga en cuenta。
 
-现在，我们在该文件夹下仿照 `readme.tid` 创建一个新的 tid 文件，其第一行改成你希望的 title (应当以`$:/xxx/xxx/xxx/`为前缀)，后面的每一行都是`字段: 内容`，直到遇到一个空行，在空行之后都是 text 字段的内容。这样我们就为插件新增了一个影子条目。
+Ahora, copiamos el `readme.tid` Crea un nuevo tid Archivo, cambia la primera linea a lo que quieras title (deberia ser`$:/xxx/xxx/xxx/`es un prefijo)，Cada linea subsiguiente es`Campos: Contenido`，Hasta que se encuentre una linea en blanco y despues de una linea en blanco text Contenidos del campo. De esta manera agregamos una nueva entrada oculta para el complemento.。
 
-我们同样可以用这样的方式为插件添加其他内容，例如 css 文件、js 代码、图片、视频等。但请注意，若文件并非是`.tid`或`.json`，或者其中不包含title字段，就不会被插件所包含。因此，对于这样的文件，我们需要一个额外的 meta 文件来为其进行说明：
+Tambien podemos agregar otro contenido al complemento de esta manera, como css Documentacion、js Codigo, imagenes, videos, etc. Pero tenga en cuenta que si el archivo no esta`.tid`o`.json`，O no contienetitleLos campos no seran incluidos en el complemento. Por lo tanto, para tales archivos necesitamos un adicional meta Documento para explicarlo：
 
-假如你希望添加一个图片 1.jpg，请在其同目录下创建一个 1.jpg.meta，使用文本编辑器打开 meta 文件进行编辑：
+Si deseas agregar una imagen 1.jpg，Por favor crea un 1.jpg.meta，Abrir con un editor de texto. meta Edite el archivo：
 
 ```
 title: $:/plugin/my-name/my-plugin/1.jpg
 type: image/jpeg
 ```
 
-可以看出来，meta 文件的格式为逐行`字段名: 字段值`，title 是必要的，而 type 则是指文件是什么格式的。这是官网给出的常见文件对应的 <$text text="ContentType" />：
+Se puede ver，meta El formato del archivo es linea por linea.`Nombre del campo: Valor del campo`，title es necesario, y type Se refiere al formato del archivo. Esto corresponde a los archivos comunes que figuran en el sitio web oficial. <$text text="ContentType" />：
 
 |!Group |!Type |!Content of `type` field |
 |^''Developer'' |Data dictionary |application/x-tiddler-dictionary|
@@ -77,10 +77,10 @@ type: image/jpeg
 |~|~TiddlyWiki 5 |text/vnd.tiddlywiki|
 |~|~TiddlyWiki Classic |text/x-tiddlywiki|
 
-更多文件对应的 <$text text="ContentType" /> 请自行百度。
+Mas archivos correspondientes a <$text text="ContentType" /> Busque usted mismo en Baidu。
 
-同理，如果希望给1.jpg添加更多字段，可以照猫画虎，例如添加 tags 等字段。
+Del mismo modo, si deseas dar1.jpgAgrega mas campos, puedes copiar el gato, por ejemplo, agregar tags Campos de espera。
 
-以上，是为插件添加影子条目的最简单最常用的方法，如果希望了解更多高级方法，请参考后文 [添加tiddler的多种方法] 篇。
+El anterior es el metodo mas simple y comun para agregar entradas ocultas para complementos. Si desea conocer metodos mas avanzados, consulte el siguiente articulo. [AgregartiddlerVarios metodos] articulos。
 
-接下来，我们就该进入激动人心的 <$text text="TypeScript" /> 插件开发环节了，快进入下一页学习吧！
+A continuacion, debemos entrar en lo emocionante. <$text text="TypeScript" /> El desarrollo del complemento ha terminado. Vayamos a la pagina siguiente para aprender.！

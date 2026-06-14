@@ -1,10 +1,10 @@
 title: $:/plugins/your-name/plugin-name/language/zh-Hans/
 
-Name: 未命名插件
-Description: 未填描述
-Configs/Description: 通过这些设置，您可以自定义「未命名插件」插件的行为。
-Configs/PluginConfigs/Caption: 插件设置
-Configs/XXX/Caption: 配置甲
-Configs/XXX/Description: 配置甲是甲
-Configs/YYY/Caption: 配置乙
-Configs/ZZZ/Caption: 配置丙
+Name: Complemento sin nombre
+Description: No se completo ninguna descripcion
+Configs/Description: Estas configuraciones le permiten personalizar「Complemento sin nombre」Comportamiento del complemento。
+Configs/PluginConfigs/Caption: Configuracion del complemento
+Configs/XXX/Caption: Configuracion A
+Configs/XXX/Description: La configuracion A es A
+Configs/YYY/Caption: Configuracion B
+Configs/ZZZ/Caption: Configuracion C
